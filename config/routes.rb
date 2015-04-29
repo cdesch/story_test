@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  mount Storytime::Engine => "/p"
+  get 'front_page/index'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  mount Storytime::Engine => "/blog"
   devise_for :users
+
+  root 'front_page#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
